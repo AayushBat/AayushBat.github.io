@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Journey So Far</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #121212;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      background-color: #121212;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      color: #00a8cc;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: #00a8cc;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 2rem;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .timeline-item.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-circle {
+      position: absolute;
+      top: 2rem;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border: 4px solid #00a8cc;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .timeline-item.left .timeline-circle {
+      right: -10px;
+    }
+
+    .timeline-item.right .timeline-circle {
+      left: -10px;
+    }
+
+    .timeline-content {
+      background-color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 168, 204, 0.1);
+    }
+
+    .timeline-content h2 {
+      margin-top: 0;
+      color: #00a8cc;
+    }
+
+    @media screen and (max-width: 768px) {
+      .timeline-item,
+      .timeline-item.left,
+      .timeline-item.right {
+        width: 100%;
+        left: 0 !important;
+        text-align: left;
+      }
+
+      .timeline-line {
+        left: 8px;
+      }
+
+      .timeline-item .timeline-circle {
+        left: -14px !important;
+        right: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>My Journey So Far</h1>
+    <p>Scroll down to see the milestones of my life</p>
+  </div>
+
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-item left">
+      <div class="timeline-circle"></div>
+      <div class="timeline-content">
+        <h2>16th Feb 2006</h2>
+        <p>Born in Noida, Uttar Pradesh</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-circle"></div>
+      <div class="timeline-content">
+        <h2>2010–2018</h2>
+        <p>Attended Kothari International School, Noida</p>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-circle"></div>
+      <div class="timeline-content">
+        <h2>2018</h2>
+        <p>Moved to Singapore</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-circle"></div>
+      <div class="timeline-content">
+        <h2>2018–2024</h2>
+        <p>Attended NPS International School, Singapore</p>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-circle"></div>
+      <div class="timeline-content">
+        <h2>2024–Present</h2>
+        <p>Attending IIITH, studying Computer Science and Computational Linguistics</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const timelineItems = document.querySelectorAll(".timeline-item");
+
+    const revealTimelineItems = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+
+      timelineItems.forEach((item) => {
+        const itemTop = item.getBoundingClientRect().top;
+        if (itemTop < triggerBottom) {
+          item.classList.add("show");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", revealTimelineItems);
+    window.addEventListener("load", revealTimelineItems);
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aayush's Portfolio - Main Content</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+  <style>
+    #cv h2::after {
+      background-color: #00a8cc;
+    }
+  </style>
+  
+</head>
+<body>
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <div class="profile-image">
+            <img src="profile.jpg" alt="Aayush's profile picture"/>
+          </div>
+          <div class="about-text">
+            <p>Hello! I'm Aayush, I am currently studying CLD at IIIT-H. I'm looking forward to learning innovative things and making some projects in the future which will solve real world problems.</p>
+          </div>
+        </div>
+        <!-- Journey Section -->
+        <section id="life" style="background-color: #f9f9f9; padding: 4rem 0;">
+          <div class="container">
+            <h2 style="text-align: center;">My Life</h2>
+            <div class="life-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem;">
+              <a href="journey.html" style="text-decoration: none; color: inherit; display: block;">
+                <div class="life-box" style="border: 2px solid #00a8cc; padding: 2rem; flex: 1 1 250px; max-width: 300px; text-align: center; border-radius: 10px;">
+                  <h3>My Journey So Far</h3>
+                </div>
+              </a>
+              <a href="birthplace.html" style="text-decoration: none; color: inherit; display: block;">
+                <div class="life-box" style="border: 2px solid #00a8cc; padding: 2rem; flex: 1 1 250px; max-width: 300px; text-align: center; border-radius: 10px;">
+                  <h3>Images from My Birthplace</h3>
+                </div>
+              </a>
+              <a href="hobbies.html" style="text-decoration: none; color: inherit; display: block;">
+                <div class="life-box" style="border: 2px solid #00a8cc; padding: 2rem; flex: 1 1 250px; max-width: 300px; text-align: center; border-radius: 10px;">
+                  <h3>My Hobbies</h3>
+                </div>
+              </a>
+              <a href="achievements.html" style="text-decoration: none; color: inherit; display: block;">
+                <div class="life-box" style="border: 2px solid #00a8cc; padding: 2rem; flex: 1 1 250px; max-width: 300px; text-align: center; border-radius: 10px;">
+                  <h3>My Achievements</h3>
+                </div>
+              </a>
+              <a href="skills.html" style="text-decoration: none; color: inherit; display: block;">
+                <div class="life-box" style="border: 2px solid #00a8cc; padding: 2rem; flex: 1 1 250px; max-width: 300px; text-align: center; border-radius: 10px;">
+                  <h3>Technical Skills</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+<!-- CV Section -->
+<section id="cv" style="background-color: #f9f9f9; padding: 4rem 0; color: #000;">
+    <div class="container" style="text-align: center;">
+      <h2 style="color: #000;">Curriculum Vitae</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #000;">
+        You can view my CV below: 
+      </p>
+      <a class="btn" href="cv.pdf" target="_blank" rel="noopener noreferrer" style="font-size: 1rem;">
+        <i class="fa-solid fa-file-pdf" style="margin-right: 8px;"></i> View CV
+      </a>
+    </div>
+  </section>
+  
+  
+        <!-- Text Analyzer Section -->
+<section id="text-analyzer">
+    <div class="container">
+      <h2>📝 Text Analyzer</h2>
+      <textarea id="textInput" placeholder="Enter text:" style="width: 100%; height: 300px; padding: 1rem; font-size: 1rem; margin-bottom: 1rem;"></textarea>
+      <button class="btn" onclick="analyzeText()">Analyze Text</button>
+      <div id="output" class="results" style="font-family: monospace; margin-top: 1.5rem; background: #f1f1f1; padding: 1rem; border-radius: 8px;"></div>
+    </div>
+  </section>
+  
+  <script>
+    function analyzeText() {
+      const text = document.getElementById("textInput").value;
+  
+      const letters = (text.match(/[a-zA-Z]/g) || []).length;
+      const words = (text.match(/\b\w+\b/g) || []).length;
+      const spaces = (text.match(/ /g) || []).length;
+      const newlines = (text.match(/\n/g) || []).length;
+      const specialSymbols = (text.match(/[^a-zA-Z0-9\s]/g) || []).length;
+  
+      const pronouns = ['i', 'me', 'you', 'he', 'him', 'she', 'her', 'it', 'we', 'us', 'they', 'them'];
+      const prepositions = ['in', 'on', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below'];
+      const articles = ['a', 'an', 'the'];
+  
+      const tokenized = text.toLowerCase().match(/\b\w+\b/g) || [];
+  
+      const countGrouped = (groupList) => {
+        const counts = {};
+        groupList.forEach(word => {
+          counts[word] = 0;
+        });
+        tokenized.forEach(token => {
+          if (groupList.includes(token)) {
+            counts[token]++;
+          }
+        });
+        return counts;
+      };
+  
+      const pronounCounts = countGrouped(pronouns);
+      const prepositionCounts = countGrouped(prepositions);
+      const articleCounts = countGrouped(articles);
+  
+      let resultHTML = `<strong>General Stats:</strong><br>
+        Letters: ${letters}<br>
+        Words: ${words}<br>
+        Spaces: ${spaces}<br>
+        Newlines: ${newlines}<br>
+        Special Symbols: ${specialSymbols}<br><br>`;
+  
+      resultHTML += `<strong>Pronoun Counts:</strong><br>${JSON.stringify(pronounCounts, null, 2).replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")}<br><br>`;
+      resultHTML += `<strong>Preposition Counts:</strong><br>${JSON.stringify(prepositionCounts, null, 2).replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")}<br><br>`;
+      resultHTML += `<strong>Article Counts:</strong><br>${JSON.stringify(articleCounts, null, 2).replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")}`;
+  
+      document.getElementById("output").innerHTML = resultHTML;
+    }
+  </script>  
+        <!-- Footer -->
+        <footer>
+          <div class="container">
+            <p>© 2025 Aayush - Personal Portfolio</p>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
